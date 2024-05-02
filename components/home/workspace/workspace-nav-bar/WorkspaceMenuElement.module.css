@@ -1,0 +1,40 @@
+.workspace_menu_element_root{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    width: 100%;
+    height: 48px;
+    background-color: inherit;
+    transition: background-color 0.3s ease;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.workspace_menu_element_root:hover{
+    background-color: #14141A;
+}
+.menu_title{
+    width: calc(100% - 30px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.menu_title > span{
+    font-family: Pretendard-Bold;
+    font-size: 1rem;
+    color: #828099;
+}
+.alarm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 20px;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+.alarm > span{
+    font-family: Pretendard-Bold;
+    font-size: 0.75rem;
+    color:#000000;
+}
