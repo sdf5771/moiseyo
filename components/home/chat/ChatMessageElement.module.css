@@ -7,12 +7,11 @@
     border-radius: 12px;
     border: 1px solid transparent;
     background-color: #131319;
+    transition: border 0.3s ease;
 }
 .chat_message_element_root:hover{
-    border: 1px solid transparent;
+    border: 1px solid #FE6B8B;
     border-radius: 12px;
-    border-image: linear-gradient(90deg, rgba(158,107,200,1) 0%, rgba(178,110,183,1) 55%, rgba(197,114,170,1) 100%);
-    border-image-slice: 1;
     background-color: #15141a;
 }
 

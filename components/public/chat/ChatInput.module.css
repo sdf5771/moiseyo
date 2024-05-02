@@ -36,11 +36,10 @@
     background-color: #15141a;
 }
 .input_container > textarea:focus{
-    border: 1px solid transparent;
     border-radius: 8px;
     outline-width: 1px;
     outline-style: solid;
-    outline-color: linear-gradient(90deg, rgba(158,107,200,1) 0%, rgba(178,110,183,1) 55%, rgba(197,114,170,1) 100%);
+    outline-color: #FE6B8B;
 }
 .send_btn{
     display: flex;
@@ -49,5 +48,12 @@
     width: 40px;
     height: 40px;
     border-radius: 4px;
-    background-color: #f4cf42;
+    /* background-color: #f4cf42; */
+    transition: all 0.2s linear;
+    background: rgb(244,207,66);
+    background: linear-gradient(45deg, rgba(244,207,66,1) 0%, rgba(255,239,176,1) 100%);
+    cursor:pointer;
+}
+.send_btn:hover{
+    transform: scale(1.1);
 }
