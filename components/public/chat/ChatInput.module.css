@@ -1,0 +1,53 @@
+.chat_input_root{
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    height: 80px;
+    gap: 16px;
+}
+.user_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input_container{
+    display: flex;
+    width: calc(100% - 30px - 16px);
+    gap: 8px;
+}
+.input_container > textarea{
+    width: calc(100% - 40px - 8px);
+    height: 100%;
+    resize: none;
+    background-color: inherit;
+    font-family: Pretendard;
+    font-size: 0.8rem;
+    color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 4px;
+}
+.input_container > textarea::placeholder{
+    font-family: Pretendard-Bold;
+    font-size: 0.8rem;
+    color: #ffffff;
+}
+.input_container > textarea:hover{
+    background-color: #15141a;
+}
+.input_container > textarea:focus{
+    border: 1px solid transparent;
+    border-radius: 8px;
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color: linear-gradient(90deg, rgba(158,107,200,1) 0%, rgba(178,110,183,1) 55%, rgba(197,114,170,1) 100%);
+}
+.send_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #f4cf42;
+}

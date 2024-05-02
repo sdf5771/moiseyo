@@ -1,3 +1,4 @@
+import ChannelSection from "@/components/home/channel/ChannelSection";
 import WorkspaceNavBar from "@/components/home/workspace/workspace-nav-bar/WorkspaceNavBar";
 import styles from "@/styles/Home.module.css";
 
@@ -8,13 +9,7 @@ export default function Home() {
         <WorkspaceNavBar />
       </section>
       <section className={styles.workspace_body_section}>
-        <div className={styles.channel_root}>
-          <div className={styles.channel_header}>
-            <div className={styles.channel_title}>
-              <span># Channel</span>
-            </div>
-          </div>
-        </div>
+        <ChannelSection />
       </section>
     </main>
   );

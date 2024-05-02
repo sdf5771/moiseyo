@@ -35,26 +35,4 @@
     width: calc(100% - 360px);
     height: 100%;
   }
-
-  .channel_root{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-  }
-  .channel_header{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    padding: 0 30px;
-    height: 50px;
-    border-bottom: 1px solid #8e3243;
-  }
-  .channel_title > span{
-    font-family: Pretendard-Bold;
-    font-size: 1.5rem;
-    color: #ffffff;
-  }
 }
