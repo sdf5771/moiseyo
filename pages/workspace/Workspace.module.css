@@ -1,0 +1,39 @@
+/* mobile */
+@media screen and (max-width: 768px) {
+    .main {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      overflow: hidden;
+    }
+  }
+  
+  /* pad */
+  @media screen and (min-width: 769px) and (max-width: 1023px) {
+    .main {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      overflow: hidden;
+    }
+  }
+  
+  /* pc */
+  @media screen and (min-width: 1024px) {
+    .main {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      background-color: #0E0E10;
+    }
+    .workspace_nav_bar_section{
+      width: 360px;
+      height: 100%;
+      padding: 10px;
+    }
+    .workspace_body_section{
+      width: calc(100% - 360px);
+      height: 100%;
+    }
+  }
+  

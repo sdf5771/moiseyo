@@ -1,0 +1,253 @@
+.auth_form_root{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    width: 960px;
+    height: 560px;
+    border-radius: 24px;
+    box-shadow: 0px 18px 20px 6px #00000014;
+}
+.auth_form_root > .left_section{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background-color: #000000;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+}
+.auth_form_root > .right_section{
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.lottie_container{
+    position: absolute;
+    bottom: 20px;
+}
+.text_container{
+    z-index: 10;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+.text_container > .title{
+    width: 100%;
+    padding: 0 40px;
+}
+.text_container > .title > span{
+    font-family: Pretendard-Bold;
+    font-size: 1.6rem;
+    color: #ffffff;
+}
+
+.text_container > .description{
+    margin-top: 20px;
+    width: 100%;
+    padding: 0 40px;
+}
+.text_container > .description > span{
+    font-family: Pretendard;
+    font-size: 0.75rem;
+    color: #ffffff;
+    word-break: keep-all;
+}
+.copyright_container{
+    position: absolute;
+    bottom: 15px;
+    left: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.copyright_container > span{
+    font-family: Pretendard;
+    font-size: 0.6rem;
+    color: #ffffff;
+}
+.login_form > .header{
+    margin-top: 40px;
+    width: 100%;
+    padding: 0 40px;
+}
+.login_form > .header > span{
+    font-family: Pretendard-Bold;
+    font-size: 1.6rem;
+    color: #000000;
+}
+.login_form > .input_box{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+    width: 100%;
+    gap: 10px;
+}
+.email_input{
+    width: 100%;
+    height: 48px;
+}
+.email_input > input{
+    width: 100%;
+    height: 100%;
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #000000;
+    border-radius: 12px;
+    border: 2px solid #eaeaea;
+    padding: 10px;
+    outline: none;
+    transition: border 0.3s linear;
+}
+.email_input > input::placeholder{
+    color: #E1E3EA;
+}
+.email_input > input:focus{
+    border: 2px solid #FE6B8B;
+}
+.password_input{
+    width: 100%;
+    height: 48px;
+}
+.password_input > input{
+    width: 100%;
+    height: 100%;
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #000000;
+    border-radius: 12px;
+    border: 2px solid #eaeaea;
+    padding: 10px;
+    outline: none;
+    transition: border 0.3s linear;
+}
+.password_input > input::placeholder{
+    color: #E1E3EA;
+}
+.password_input > input:focus{
+    border: 2px solid #FE6B8B;
+}
+.name_input{
+    width: 100%;
+    height: 48px;
+}
+.name_input > input{
+    width: 100%;
+    height: 100%;
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #000000;
+    border-radius: 12px;
+    border: 2px solid #eaeaea;
+    padding: 10px;
+    outline: none;
+    transition: border 0.3s linear;
+}
+.name_input > input::placeholder{
+    color: #E1E3EA;
+}
+.name_input > input:focus{
+    border: 2px solid #FE6B8B;
+}
+
+.option_btn_container{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+.option_btn_container > .forgot_password{
+    cursor: pointer;
+}
+.option_btn_container > .forgot_password > span{
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #3181F9;
+}
+.btn_container{
+    margin-top: 30px;
+    width: 100%;
+    padding: 0 40px;
+}
+.login_btn{
+    width: 100%;
+    height: 48px;
+    border: 0;
+    outline: none;
+    background-color: #000000;
+    border-radius: 12px;
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: transform 0.2s ease;
+}
+.login_btn:hover{transform: scale(1.1);}
+.join_us_btn{
+    width: 100%;
+    height: 48px;
+    border: 0;
+    outline: none;
+    background-color: #000000;
+    border-radius: 12px;
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: transform 0.2s ease;
+}
+.join_us_btn:hover{transform: scale(1.1);}
+.register_container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+    padding: 0 40px;
+}
+.register_container > span:first-child{
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #000000;
+}
+.register_container > span:last-child{
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #3181F9;
+    cursor: pointer;
+}
+.horizontal_line_container{
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+    padding: 0 40px;
+}
+.horizontal_line_container > div:nth-child(1){
+    width: 50%;
+    height: 2px;
+    background-color: #eaeaea;
+}
+.horizontal_line_container > span{
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #eaeaea;
+}
+.horizontal_line_container > div:nth-child(3){
+    width: 50%;
+    height: 2px;
+    background-color: #eaeaea;
+}
