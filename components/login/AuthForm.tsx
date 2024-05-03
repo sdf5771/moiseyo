@@ -2,6 +2,7 @@
 import styles from './AuthForm.module.css';
 import Lottie from 'react-lottie-player';
 import mornitorMessageLottie from '@/public/lotties/mornitor_message.json';
+import messageWorkLottie from '@/public/lotties/message_work.json';
 import { useState } from 'react';
 
 function AuthForm(){
@@ -29,7 +30,7 @@ function AuthForm(){
                     </div>
                 </div>
                 <div className={styles.lottie_container}>
-                    <Lottie loop animationData={mornitorMessageLottie} play />
+                    <Lottie style={{width: 440, height: 440}} loop animationData={messageWorkLottie} play />
                 </div>
                 <div className={styles.copyright_container}>
                     <span>Developer - seobisback</span>

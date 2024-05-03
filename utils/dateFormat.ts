@@ -11,7 +11,7 @@ function dateFormat(date: Date) {
     minute = Number(minute) >= 10 ? minute : '0' + minute;
     second = Number(second) >= 10 ? second : '0' + second;
 
-    return date.getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+    return date.getFullYear() + '년 ' + month + '월 ' + day + '일 - ' + hour + '시 ' + minute + '분 ' + second + '초';
 }
 
 export default dateFormat;

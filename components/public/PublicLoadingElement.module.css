@@ -1,0 +1,23 @@
+.public_loading_element_root{
+    position: absolute;
+    z-index: 97;
+    top: 0;
+    left: 0;
+}
+.public_loading_element_root > .background{
+    position: absolute;
+    z-index: 98;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.60);
+    backdrop-filter: blur(15px);
+}
+.loading{
+    z-index: 99;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+}
