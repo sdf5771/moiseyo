@@ -4,6 +4,11 @@ import Lottie from 'react-lottie-player';
 import mornitorMessageLottie from '@/public/lotties/mornitor_message.json';
 import messageWorkLottie from '@/public/lotties/message_work.json';
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { postCreateUser, postLoginUser } from '@/queries';
+
+const ACCESS_TOKEN_STORAGE_KEY = 'AccessToken';
+const REFRESH_TOKEN_STORAGE_KEY = 'RefreshToken';
 
 function AuthForm(){
     const [loginEmail, setLoginEmail] = useState('');
@@ -11,10 +16,72 @@ function AuthForm(){
     const [registerName, setRegisterName] = useState('');
     const [registerEmail, setRegisterEmail] = useState('');
     const [registerPassword, setRegisterPassword] = useState('');
+    const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState('');
+    const [isError, setIsError] = useState(false);
     const [activeForm, setActiveForm] = useState({
         loginForm: true,
         registerForm: false,
     });
+    const {mutate: loginUser} = useMutation({
+        mutationFn: postLoginUser,
+        onError: (error) => {
+            console.log(error)
+
+            alert('로그인에 실패했어요.');
+        },
+        onSuccess: (data) => {
+            if(data.code === 200){
+                const {accessToken, refreshToken} = data.result;
+
+                setLoginEmail('');
+                setLoginPassword('');
+                
+                localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, accessToken)
+                localStorage.setItem(REFRESH_TOKEN_STORAGE_KEY, refreshToken)
+
+                alert('로그인이 완료되었어요.');
+
+                location.reload();
+            } else if(data.code === 401){
+                setLoginEmail('');
+                setLoginPassword('');
+                setIsError(true);
+            } else if(data.code === 422){
+                setLoginPassword('');
+                setIsError(true);
+            } else {
+                alert('로그인 서버에 문제가 생겼어요.');
+            }
+        }
+    })
+    const {mutate: createUser} = useMutation({
+        mutationFn: postCreateUser,
+        onError: (error) => {
+            console.log(error)
+
+            alert('계정 생성에 실패했어요.');
+        },
+        onSuccess: (data) => {
+            if(data.code === 200){
+                const {accessToken, refreshToken} = data.result;
+
+                setRegisterName('');
+                setRegisterEmail('');
+                setRegisterPassword('');
+                setRegisterPasswordConfirm('');
+                alert('계정 생성이 완료되었어요.');
+
+                setActiveForm({
+                    loginForm: true,
+                    registerForm: false,
+                })
+
+                location.reload();
+            } else {
+                alert('서버에 문제가 생겼어요.');
+            }
+        }
+    })
     return(
         <div className={styles.auth_form_root}>
             <section className={styles.left_section}>
@@ -52,6 +119,7 @@ function AuthForm(){
                                 </div>
                                 <div className={styles.password_input}>
                                     <input 
+                                        type="password"
                                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => setLoginPassword(event.target.value)}
                                         placeholder='Enter password' value={loginPassword}/>
                                 </div>
@@ -62,7 +130,9 @@ function AuthForm(){
                                 </div>
                             </div>
                             <div className={styles.btn_container}>
-                                <button className={styles.login_btn}>LOGIN</button>
+                                <button onClick={() => {
+                                    loginUser({email: loginEmail, password: loginPassword})
+                                }} className={styles.login_btn}>LOGIN</button>
                             </div>
                             <div className={styles.register_container}>
                                 <span>{`Don't have an account?`}</span>
@@ -95,12 +165,21 @@ function AuthForm(){
                                 </div>
                                 <div className={styles.password_input}>
                                     <input 
+                                        type="password"
                                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRegisterPassword(event.target.value)}
                                         placeholder='Password' value={registerPassword}/>
                                 </div>
+                                <div className={styles.password_input}>
+                                    <input 
+                                        type="password"
+                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRegisterPasswordConfirm(event.target.value)}
+                                        placeholder='Password Verify' value={registerPasswordConfirm}/>
+                                </div>
                             </div>
                             <div className={styles.btn_container}>
-                                <button className={styles.join_us_btn}>Join Us!</button>
+                                <button onClick={() => {
+                                    createUser({email: registerEmail, password: registerPassword, userName: registerName})
+                                }} className={styles.join_us_btn}>Join Us!</button>
                             </div>
                             <div className={styles.register_container}>
                                 <span>{`Have an account already?`}</span>
