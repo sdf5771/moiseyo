@@ -3,18 +3,23 @@ import styles from './AuthForm.module.css';
 import Lottie from 'react-lottie-player';
 import mornitorMessageLottie from '@/public/lotties/mornitor_message.json';
 import messageWorkLottie from '@/public/lotties/message_work.json';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { postCreateUser, postLoginUser } from '@/queries';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { authState } from '@/stores';
+import useAuth from '@/hooks/useAuth';
 
 const ACCESS_TOKEN_STORAGE_KEY = 'AccessToken';
 const REFRESH_TOKEN_STORAGE_KEY = 'RefreshToken';
 
 function AuthForm(){
     const router = useRouter();
+    const {userLogOut} = useAuth();
+    useEffect(() => {
+        userLogOut();
+    }, [])
     const [userAuthState, setUserAuthState] = useRecoilState(authState);
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
