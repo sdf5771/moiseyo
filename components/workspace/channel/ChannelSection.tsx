@@ -2,7 +2,7 @@
 import ChatInput from '@/components/public/chat/ChatInput';
 import styles from './ChannelSection.module.css';
 import ChatMessageElement from '../chat/ChatMessageElement';
-import dateFormat from '@/utils/dateFormat';
+import { dateFormatFull } from '@/utils/dateFormat';
 import SocketIOClient from "socket.io-client";
 import { useEffect, useRef, useState } from 'react';
 import { PublicLoadingElement } from '@/components/public';
@@ -57,7 +57,7 @@ function ChannelSection(){
       const message: IMsg = {
         user: 'user_id',
         msg: textareaValue,
-        createAt: dateFormat(new Date())
+        createAt: dateFormatFull(new Date())
       };
 
       // dispatch message to other users

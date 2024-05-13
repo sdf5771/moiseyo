@@ -6,11 +6,16 @@ import messageWorkLottie from '@/public/lotties/message_work.json';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { postCreateUser, postLoginUser } from '@/queries';
+import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
+import { authState } from '@/stores';
 
 const ACCESS_TOKEN_STORAGE_KEY = 'AccessToken';
 const REFRESH_TOKEN_STORAGE_KEY = 'RefreshToken';
 
 function AuthForm(){
+    const router = useRouter();
+    const [userAuthState, setUserAuthState] = useRecoilState(authState);
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const [registerName, setRegisterName] = useState('');
@@ -39,9 +44,11 @@ function AuthForm(){
                 localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, accessToken)
                 localStorage.setItem(REFRESH_TOKEN_STORAGE_KEY, refreshToken)
 
-                alert('로그인이 완료되었어요.');
+                setUserAuthState({isLoggedIn: true});
 
-                location.reload();
+                alert('로그인이 완료되었어요.');
+                
+                router.push('/workspace/list');
             } else if(data.code === 401){
                 setLoginEmail('');
                 setLoginPassword('');
@@ -63,13 +70,14 @@ function AuthForm(){
         },
         onSuccess: (data) => {
             if(data.code === 200){
-                const {accessToken, refreshToken} = data.result;
 
                 setRegisterName('');
                 setRegisterEmail('');
                 setRegisterPassword('');
                 setRegisterPasswordConfirm('');
+
                 alert('계정 생성이 완료되었어요.');
+                alert('로그인을 진행해주세요.');
 
                 setActiveForm({
                     loginForm: true,
@@ -77,6 +85,9 @@ function AuthForm(){
                 })
 
                 location.reload();
+            } else if (data.code === 409){
+                alert('작성하신 계정 정보는 이미 존재해요.')
+                setRegisterEmail('');
             } else {
                 alert('서버에 문제가 생겼어요.');
             }

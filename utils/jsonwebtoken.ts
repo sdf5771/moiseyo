@@ -1,7 +1,8 @@
 import fs from 'fs';
+import {jwtDecode} from 'jwt-decode';
 
 export const createAccessToken = (userId: string) => {
-    const privateKey = fs.readFileSync('private.key', 'utf-8');
+    const privateKey = fs.readFileSync('private_key.pem', 'utf-8');
     const jwt = require('jsonwebtoken');
     const accessToken = jwt.sign({ userId: userId }, privateKey, {
         algorithm: 'RS256',
@@ -13,7 +14,7 @@ export const createAccessToken = (userId: string) => {
 }
 
 export const verifyAccessToken = (accessToken: string) => {
-    const publicKey = fs.readFileSync('public.key', 'utf-8');
+    const publicKey = fs.readFileSync('public_key.pem', 'utf-8');
     const jwt = require('jsonwebtoken');
     try {
         const verified = jwt.verify(accessToken, publicKey)
@@ -24,7 +25,7 @@ export const verifyAccessToken = (accessToken: string) => {
 }
 
 export const createRefreshToken = (userId: string) => {
-    const privateKey = fs.readFileSync('private.key', 'utf-8');
+    const privateKey = fs.readFileSync('private_key.pem', 'utf-8');
     const jwt = require('jsonwebtoken');
     const refreshToken = jwt.sign({ userId: userId}, privateKey, {
         algorithm: 'RS256',
@@ -35,7 +36,7 @@ export const createRefreshToken = (userId: string) => {
 }
 
 export const verifyRefreshToken = (refreshToken: string) => {
-    const publicKey = fs.readFileSync('public.key', 'utf-8');
+    const publicKey = fs.readFileSync('public_key.pem', 'utf-8');
     const jwt = require('jsonwebtoken');
     try {
         const verified = jwt.verify(refreshToken, publicKey)

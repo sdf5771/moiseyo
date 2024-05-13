@@ -58,9 +58,10 @@ export default async function handler(
       });
     }
 
-    const accessToken = createAccessToken(req.body.userId);
-    const refreshToken = createRefreshToken(req.body.userId);
-
+    const accessToken = createAccessToken(req.body.email);
+    const refreshToken = createRefreshToken(req.body.email);
+    console.log("accessToken ", accessToken);
+    console.log('refreshToken ', refreshToken);
     let updateRefreshTokenResult = await handleMySQLQuery({
       sqlStr: `UPDATE user SET refresh_token='${refreshToken}' WHERE email='${req.body.email}'`
     })
