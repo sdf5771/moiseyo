@@ -6,11 +6,12 @@ type Tprops = {
     title: string;
     clickHandler: (event: React.MouseEvent<HTMLDivElement>) => void;
     alarmNum?: number;
+    isActive: boolean;
 }
 
-function WorkspaceMenuElement({Icon, title, alarmNum, clickHandler}: Tprops){
+function WorkspaceMenuElement({Icon, title, alarmNum, clickHandler, isActive}: Tprops){
     return(
-        <div onClick={clickHandler} className={styles.workspace_menu_element_root}>
+        <div onClick={clickHandler} className={`${styles.workspace_menu_element_root} ${isActive ? styles.active : ''}`}>
             <div className={styles.menu_title}>
                 <Icon color="#828099" fontSize={16} />
                 <span>{title}</span>

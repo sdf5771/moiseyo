@@ -8,7 +8,7 @@ type Tprops = workspaceListData
 function WorkspaceElement({workspaceId, workspaceTitle, ownerInfo, createdAt, isAdmin}: Tprops){
     const router = useRouter();
     return (
-        <div onClick={() => router.push(`/workspace?wid=${workspaceId}`)} className={styles.workspace_element_root}>
+        <div onClick={() => router.push(`/workspace?wid=${workspaceId}&channel=notice`)} className={styles.workspace_element_root}>
             <div className={styles.workspace_element_header}>
                 <span>{workspaceTitle}</span>
             </div>

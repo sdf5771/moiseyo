@@ -25,7 +25,8 @@
       flex-direction: column;
       width: 100vw;
       height: 100vh;
-      background-color: #0E0E10;
+      background-color: #1F1E22;
+      /* #09090A */
     }
     .header{
         margin-top: 20px;
@@ -73,7 +74,7 @@
       flex-direction: column;
       width: 800px;
       height: 600px;
-      background-color: #FAF9FE;
+      background-color: #eaeaea;
       border-radius: 8px;
     }
     .workspace_container > .header{

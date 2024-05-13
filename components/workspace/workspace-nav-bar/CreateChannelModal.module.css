@@ -1,0 +1,49 @@
+.create_channel_modal_root{
+    z-index: 30;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.create_channel_modal_root > .modal_background{
+    z-index: 31;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0, 0.3);
+    backdrop-filter: blur(10px);
+}
+.create_channel_modal_root > .modal_body{
+    z-index: 32;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 340px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+.modal_body > .header > .title{
+    font-family: Pretendard;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.modal_body > .input_container{
+    margin-top: 12px;
+    display: flex;
+    width: 100%;
+}
+.modal_body > .input_container > input{
+    width: 100%;
+    height: 32px;
+    font-family: Pretendard;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+.modal_body > .btn_container {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+}

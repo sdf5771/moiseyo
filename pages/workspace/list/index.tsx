@@ -15,15 +15,15 @@ import { workspaceListData } from "@/types/workspaceListData";
 
 export default function WorkspaceList() {
   const router = useRouter();
-  const {validationAccessTokenAsync} = useAuth();
+  const {validationAccessTokenAsync, refreshAccessTokenAsync} = useAuth();
   const [accessToken, setAceessToken] = useState('');
   useEffect(() => {
-    if(!validationAccessTokenAsync){
+    if(!validationAccessTokenAsync()){
       alert('로그인 정보가 없습니다.');
       router.push('/login');
     }
     const storageTmp = localStorage.getItem('AccessToken')
-    console.log('storageTmp ', storageTmp);
+    
     if(storageTmp){
       setAceessToken(storageTmp)
     }
@@ -34,7 +34,7 @@ export default function WorkspaceList() {
   })
   const [createWorkspaceModal,  setCreateWorkspaceModal] = useRecoilState(createWorkspaceModalState);
   const [avartar, setAvartar] = useState(null);
-  console.log('workspaceListData ', workspaceListData);
+  
   return (
     <main className={styles.main}>
       <div className={styles.header}>
