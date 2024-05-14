@@ -4,6 +4,7 @@ import getTokenCheck from "./getTokenCheck";
 import postRefreshToken from "./postRefreshToken";
 import getWorkspaceList from "./getWorkspaceList";
 import postWorkspaceList from "./postWorkspaceList";
+import getChannelList from "./getChannelList";
 
 export {
     postCreateUser,
@@ -11,5 +12,6 @@ export {
     getTokenCheck,
     postRefreshToken,
     getWorkspaceList,
-    postWorkspaceList
+    postWorkspaceList,
+    getChannelList
 }

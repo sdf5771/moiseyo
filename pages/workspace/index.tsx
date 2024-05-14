@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 
 export default function Workspace() {
   const router = useRouter();
-  const [wid, setWid] = useState('');
-  const [channelId, setChannelId] = useState('');
-  console.log('router ', router);
+  const [wid, setWid] = useState<string | null>(null);
+  const [channelId, setChannelId] = useState<string | null>(null);
+  
   useEffect(() => {
     if(router.query.wid && typeof(router.query.wid) === 'string'){
       setWid(router.query.wid);
@@ -21,7 +21,7 @@ export default function Workspace() {
   return (
     <main className={styles.main}>
       <section className={styles.workspace_nav_bar_section}>
-        <WorkspaceNavBar />
+        {wid && channelId ? <WorkspaceNavBar workspaceId={wid} activeMenu={channelId}/> : null}
       </section>
       <section className={styles.workspace_body_section}>
         <ChannelSection />

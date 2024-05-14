@@ -4,5 +4,6 @@ export default atom({
     key: 'authState',
     default: {
         isLoggedIn: false,
+        accessToken: '',
     }
 })

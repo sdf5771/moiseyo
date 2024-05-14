@@ -4,11 +4,12 @@ type Tprops = {
     title: string;
     clickHandler: (event: React.MouseEvent<HTMLDivElement>) => void;
     alarmNum?: number;
+    isActive: boolean;
 }
 
-function ChannelElement({ title, alarmNum, clickHandler}: Tprops){
+function ChannelElement({ title, alarmNum, clickHandler, isActive}: Tprops){
     return(
-        <div onClick={clickHandler} className={styles.channel_element_root}>
+        <div onClick={clickHandler} className={`${styles.channel_element_root} ${isActive ? styles.active : ''}`}>
             <div className={styles.channel_info}>
                 <span>#</span>
                 <span>{title}</span>

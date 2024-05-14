@@ -49,7 +49,7 @@ function AuthForm(){
                 localStorage.setItem(ACCESS_TOKEN_STORAGE_KEY, accessToken)
                 localStorage.setItem(REFRESH_TOKEN_STORAGE_KEY, refreshToken)
 
-                setUserAuthState({isLoggedIn: true});
+                setUserAuthState({isLoggedIn: true, accessToken: accessToken});
 
                 alert('로그인이 완료되었어요.');
                 

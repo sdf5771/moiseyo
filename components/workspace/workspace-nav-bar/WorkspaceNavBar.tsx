@@ -9,22 +9,30 @@ import ChatUserElement from './ChatUserElement';
 import ChannelElement from './ChannelElement';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { createChannelModalState } from '@/stores';
+import { authState, createChannelModalState } from '@/stores';
+import { useQuery } from '@tanstack/react-query';
+import { getChannelList } from '@/queries';
+import useErrorHandler from '@/hooks/useErrorHandler';
 
-function WorkspaceNavBar(){
+type Tprops = {
+    workspaceId: string;
+    activeMenu: string;
+}
+
+function WorkspaceNavBar({workspaceId, activeMenu}: Tprops){
     const router = useRouter();
-    const [activeMenu, setActiveMenu] = useState('');
-    const [workspaceId, setWorkspaceId] = useState('');
+    const [userAuthState, setUserAuthState] = useRecoilState(authState);
     const [createChannelModal,  setCreateChannelModal] = useRecoilState(createChannelModalState);
-    useEffect(() => {
-        if(router.query.channel && typeof(router.query.channel) === 'string'){
-            setActiveMenu(router.query.channel)
-        }
+    const {errorHandler} = useErrorHandler();
+    const {data: channelListData, isLoading: channelListIsLoading, isError: channelListIsError} = useQuery({
+        queryKey: ['channelListData', userAuthState.accessToken],
+        queryFn: () => getChannelList({accessToken: userAuthState.accessToken, workspaceId: workspaceId}),
+    })
 
-        if(router.query.wid && typeof(router.query.wid) === 'string'){
-            setWorkspaceId(router.query.wid)
-        }
-    }, [router])
+    console.log('channelListData ', channelListData);
+
+    errorHandler(channelListData ? channelListData.code : 200)
+
     return (
         <div className={styles.workspace_nav_bar_root}>
             <div className={styles.nav_bar_header}>
@@ -54,14 +62,14 @@ function WorkspaceNavBar(){
             <div className={styles.channel_list_container}>
                 <div className={styles.channel_list_header}>
                     <span className={styles.title}>CHANNEL LIST</span>
-                    <div onClick={() => setCreateChannelModal({isOpen: true})} className={styles.new_channel_btn}>
+                    <div onClick={() => setCreateChannelModal({isOpen: true, workspaceId: workspaceId})} className={styles.new_channel_btn}>
                         <HiPlusSm color="#828099" fontSize={20} />
                     </div>
                 </div>
                 <div className={styles.channel_list}>
-                    <ChannelElement title={"Test Channel 01"} alarmNum={2} clickHandler={() => {}} />
-                    <ChannelElement title={"Test Channel 02"} alarmNum={2} clickHandler={() => {}} />
-                    <ChannelElement title={"Test Channel 03"} alarmNum={2} clickHandler={() => {}} />
+                    <ChannelElement title={"Test Channel 01"} alarmNum={2} clickHandler={() => {}} isActive={false}/>
+                    <ChannelElement title={"Test Channel 02"} alarmNum={2} clickHandler={() => {}} isActive={false}/>
+                    <ChannelElement title={"Test Channel 03"} alarmNum={2} clickHandler={() => {}} isActive={false}/>
                 </div>
             </div>
             <div className={styles.line_horizontal}></div>

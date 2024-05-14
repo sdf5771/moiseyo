@@ -20,9 +20,9 @@ function useAuth(){
     const [userAuthState, setUserAuthState] = useRecoilState(authState);
     const {mutate: checkAccessToken, mutateAsync: checkAccessTokenAsync} = useMutation({
         mutationFn: getTokenCheck,
-        onSuccess: (data: TresponseData) => {
+        onSuccess: (data: TresponseData, variables) => {
             if(data.code === 200){
-                setUserAuthState({isLoggedIn: true});
+                setUserAuthState({isLoggedIn: true, accessToken: variables.accessToken});
             } else if(data.code === 401){
                 // AccessToken이 만료되었으므로 RefreshToken으로 AccessToken 재발급 요청
                 refreshAccessToken();
@@ -35,7 +35,7 @@ function useAuth(){
     })
 
     const userLogOut = () => {
-        setUserAuthState({isLoggedIn: false});
+        setUserAuthState({isLoggedIn: false, accessToken: ''});
         localStorage.removeItem(ACCESS_TOKEN_STORAGE_KEY);
         localStorage.removeItem(REFRESH_TOKEN_STORAGE_KEY);
     }

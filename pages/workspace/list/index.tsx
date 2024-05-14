@@ -15,22 +15,10 @@ import { workspaceListData } from "@/types/workspaceListData";
 
 export default function WorkspaceList() {
   const router = useRouter();
-  const {validationAccessTokenAsync, refreshAccessTokenAsync} = useAuth();
-  const [accessToken, setAceessToken] = useState('');
-  useEffect(() => {
-    if(!validationAccessTokenAsync()){
-      alert('로그인 정보가 없습니다.');
-      router.push('/login');
-    }
-    const storageTmp = localStorage.getItem('AccessToken')
-    
-    if(storageTmp){
-      setAceessToken(storageTmp)
-    }
-  }, [])
+  const [userAuthState, setUserAuthState] = useRecoilState(authState);
   const {data: workspaceListData, isLoading: workspaceListIsLoading, isError: workspaceListIsError, refetch: workspaceListRefetch} = useQuery({
-    queryKey: ['workspacelist ', accessToken],
-    queryFn: () => getWorkspaceList({accessToken: accessToken}),
+    queryKey: ['workspacelist ', userAuthState.accessToken],
+    queryFn: () => getWorkspaceList({accessToken: userAuthState.accessToken}),
   })
   const [createWorkspaceModal,  setCreateWorkspaceModal] = useRecoilState(createWorkspaceModalState);
   const [avartar, setAvartar] = useState(null);
