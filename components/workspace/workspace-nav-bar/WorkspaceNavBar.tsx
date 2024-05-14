@@ -13,6 +13,7 @@ import { authState, createChannelModalState } from '@/stores';
 import { useQuery } from '@tanstack/react-query';
 import { getChannelList } from '@/queries';
 import useErrorHandler from '@/hooks/useErrorHandler';
+import { channelListData } from '@/types/channelListData';
 
 type Tprops = {
     workspaceId: string;
@@ -67,9 +68,17 @@ function WorkspaceNavBar({workspaceId, activeMenu}: Tprops){
                     </div>
                 </div>
                 <div className={styles.channel_list}>
-                    <ChannelElement title={"Test Channel 01"} alarmNum={2} clickHandler={() => {}} isActive={false}/>
-                    <ChannelElement title={"Test Channel 02"} alarmNum={2} clickHandler={() => {}} isActive={false}/>
-                    <ChannelElement title={"Test Channel 03"} alarmNum={2} clickHandler={() => {}} isActive={false}/>
+                    {channelListData && channelListData.result.channelList ? 
+                    channelListData.result.channelList.map((item: channelListData, index: number) => {
+                        return <ChannelElement 
+                        key={item.channelId} 
+                        title={item.channelTitle} 
+                        clickHandler={() => {
+                            router.push(`/workspace?wid=${workspaceId}&channel=${item.channelId}`)
+                        }} 
+                        isActive={false}/>
+                    })
+                    : null}
                 </div>
             </div>
             <div className={styles.line_horizontal}></div>

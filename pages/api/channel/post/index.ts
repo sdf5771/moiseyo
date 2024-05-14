@@ -31,8 +31,8 @@ export default async function handler(
 
     if(findUserInfoResult  && Array.isArray(findUserInfoResult) && findUserInfoResult.length !== 0){
         let createChannelResult: any = await handleMySQLQuery({
-            sqlStr: `INSERT INTO channel (title, owner)
-            VALUES ('${req.body.channelTitle}', '${findUserInfoResult[0].id}');`
+            sqlStr: `INSERT INTO channel (title, owner, workspace_id)
+            VALUES ('${req.body.channelTitle}', '${findUserInfoResult[0].id}', '${req.body.workspaceId}');`
         });
 
         if(createChannelResult && createChannelResult.insertId){
